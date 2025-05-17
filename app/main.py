@@ -29,8 +29,7 @@ def read_item(item_id: int):
     if item_id not in items:
         raise HTTPException(status_code=404, detail="Item não encontrado")
     return items[item_id]
-
-
+    
 #define a route to delete an item
 @app.delete("/items/{item_id}")
 def delete_item(item_id: int):
