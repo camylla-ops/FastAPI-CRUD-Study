@@ -31,7 +31,6 @@ def read_item(item_id: int):
     return items[item_id]
 
 
-
 #define a route to delete an item
 @app.delete("/items/{item_id}")
 def delete_item(item_id: int):
