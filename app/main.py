@@ -30,7 +30,14 @@ def read_item(item_id: int):
         raise HTTPException(status_code=404, detail="Item não encontrado")
     return items[item_id]
 
-
+# Define a route to update an item
+@app.put("/items/{item_id}")
+def update_item(item_id: int, item: Item):
+    if item_id not in items:
+        raise HTTPException(status_code=404, detail="Item não encontrado")
+    items[item_id] = item
+    return {"message": "Item atualizado com sucesso", "item": item}
+    
 #define a route to delete an item
 @app.delete("/items/{item_id}")
 def delete_item(item_id: int):
@@ -40,9 +47,7 @@ def delete_item(item_id: int):
     return {"message": "Item deletado com sucesso"}   
 
 #define a route to read all items
-@app.put("/items/{item_id}")
-def update_item(item_id: int, item: Item):
-    if item_id not in items:
-        raise HTTPException(status_code=404, detail="Item não encontrado")
-    items[item_id] = item
-    return {"message": "Item atualizado com sucesso", "item": item}
+@app.get("/items")
+def read_all_items():
+    return items    
+
